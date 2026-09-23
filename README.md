@@ -1,213 +1,90 @@
 # pamii-gabriel-fernandes
-# Como Criar um Projeto Spring Boot com Java
+# Criação de Projeto Expo
 
-Guia passo a passo para criar um projeto Spring Boot utilizando dois métodos:
-
-- **Spring Initializr** — ferramenta online para gerar a estrutura inicial do projeto
-- **IntelliJ IDEA** — criação do projeto diretamente pela IDE
+Guia passo a passo para criar, executar e compartilhar um projeto Expo (React Native).
 
 ## Sumário
 
-1. [O que é Spring Boot?](#1-o-que-é-spring-boot)
-2. [Método 1 — Spring Initializr](#2-método-1--spring-initializr)
-   - 2.1 [Configurando o projeto](#21-configurando-o-projeto)
-   - 2.2 [Adicionando dependências](#22-adicionando-dependências)
-   - 2.3 [Gerando e baixando o projeto](#23-gerando-e-baixando-o-projeto)
-3. [Método 2 — IntelliJ IDEA](#3-método-2--intellij-idea)
-   - 3.1 [Criando o projeto](#31-criando-o-projeto)
-   - 3.2 [Adicionando dependências pelo IntelliJ](#32-adicionando-dependências-pelo-intellij)
-4. [Estrutura básica do projeto](#4-estrutura-básica-do-projeto)
-5. [Executando a aplicação](#5-executando-a-aplicação)
-6. [Comparação dos dois métodos](#6-comparação-dos-dois-métodos)
+1. [Pré-requisitos](#1-pré-requisitos)
+2. [Passo a Passo](#2-passo-a-passo)
+   - 2.1 [Instale o Expo CLI](#21-instale-o-expo-cli)
+   - 2.2 [Crie o projeto](#22-crie-o-projeto)
+   - 2.3 [Acesse a pasta do projeto](#23-acesse-a-pasta-do-projeto)
+   - 2.4 [Inicie o servidor de desenvolvimento](#24-inicie-o-servidor-de-desenvolvimento)
+   - 2.5 [Teste o app no seu celular](#25-teste-o-app-no-seu-celular)
+   - 2.6 [Compartilhe seu app](#26-compartilhe-seu-app)
+3. [Erros comuns](#3-erros-comuns)
 
 ---
 
-## 1. O que é Spring Boot?
+## 1. Pré-requisitos
 
-Spring Boot é um framework Java que facilita a criação de aplicações prontas para uso, já configurado com tudo o que uma aplicação precisa para rodar, sem exigir configuração do zero.
+Antes de começar, certifique-se de ter instalado:
 
-Com o Spring Boot é possível criar:
-
-- APIs REST
-- Aplicações web
-- Serviços de back-end
-
-A grande vantagem é reduzir a quantidade de configuração necessária, permitindo focar no desenvolvimento das funcionalidades.
+- **Node.js** (preferencialmente a versão LTS)
+- **npm** ou **yarn** (gerenciadores de pacotes)
+- **Expo CLI** (instalado via npm)
+- Um celular com o app **Expo Go** (disponível na Play Store e App Store)
 
 ---
 
-## 2. Método 1 — Spring Initializr
+## 2. Passo a Passo
 
-Ferramenta online que gera automaticamente a estrutura inicial de um projeto Spring Boot. Acesse: https://start.spring.io/
+### 2.1 Instale o Expo CLI
 
-### 2.1 Configurando o projeto
+Abra o terminal e execute o comando:
 
-| Campo | Valor a selecionar | O que significa |
-|---|---|---|
-| Project | Gradle - Groovy | Sistema de build usado para compilar e gerenciar dependências |
-| Language | Java | Linguagem de programação do projeto |
-| Spring Boot | 4.1.0 | Versão do Spring Boot |
-| Group | com.exemplo | Identificador do grupo/organização |
-| Artifact | demo | Nome do projeto gerado |
-| Package name | com.exemplo.demo | Gerado automaticamente a partir de Group e Artifact |
-| Packaging | Jar | Formato do arquivo gerado no build |
-| Java | 21 | Versão do JDK utilizado |
-
-> **Dica:** o campo *Package name* é preenchido automaticamente, mas pode ser alterado manualmente.
-
-### 2.2 Adicionando dependências
-
-Dependências são bibliotecas externas que adicionam funcionalidades prontas ao projeto.
-
-**Passo a passo:**
-1. Clique em **ADD DEPENDENCIES...** (ou `Ctrl + B`)
-2. Pesquise o nome da dependência (ex: `Web`)
-3. Selecione **Spring Web**
-4. Confirme que ela aparece em *Dependencies*
-
-Dependências comuns:
-- **Spring Web** — cria APIs REST/web, já com Tomcat embutido
-- **Spring Boot DevTools** — reinicia a aplicação automaticamente ao detectar mudanças
-- **Lombok** — reduz código repetitivo (getters, setters, construtores)
-
-**Adicionar depois de criado**, edite `build.gradle`:
-
-```gradle
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-}
+```
+npm install -g expo-cli
 ```
 
-Depois, no IntelliJ, clique em **Load Gradle Changes**.
+### 2.2 Crie o projeto
 
-### 2.3 Gerando e baixando o projeto
+Após a instalação, crie um novo projeto com o comando:
 
-1. Revise as configurações e dependências
-2. Clique em **GENERATE** (ou `Ctrl + Enter`)
-3. Extraia o `.zip` baixado
-4. No IntelliJ: `File → Open...` e selecione a pasta do projeto
-5. Aguarde o carregamento das dependências Gradle
+```
+npx create-expo-app@latest exemplo-app
+```
 
----
+### 2.3 Acesse a pasta do projeto
 
-## 3. Método 2 — IntelliJ IDEA
+Entre na pasta recém-criada:
 
-Criação direta pela IDE, sem passar pelo navegador (mesmo processo do Spring Initializr, integrado).
+```
+cd exemplo-app
+```
 
-### 3.1 Criando o projeto
+### 2.4 Inicie o servidor de desenvolvimento
 
-1. Abra o IntelliJ IDEA → **New Project**
-2. Selecione **Spring Boot** no painel esquerdo
-   - Se não aparecer, verifique o plugin Spring em `File → Settings → Plugins`
-3. Preencha:
-   - Name: `demo`
-   - Language: `Java`
-   - Type: `Gradle - Groovy`
-   - Group: `com.exemplo`
-   - Artifact: `demo`
-   - JDK: `21`
-   - Packaging: `Jar`
-4. Clique em **Next**
+Execute o comando:
 
-### 3.2 Adicionando dependências pelo IntelliJ
+```
+npx expo start
+```
 
-1. Pesquise `Web`
-2. Marque **Spring Web**
-3. Clique em **Create**
+Isso abrirá a interface do Expo Developer Tools no navegador, de onde você pode iniciar seu app em emuladores ou dispositivos físicos.
 
-```gradle
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
+### 2.5 Teste o app no seu celular
+
+1. Abra o app **Expo Go** no seu celular
+2. Escaneie o QR Code que aparece no terminal ou no navegador
+3. Seu aplicativo será carregado e você poderá ver as mudanças em tempo real conforme edita o código
+
+### 2.6 Compartilhe seu app
+
+Você pode compartilhar o app com outras pessoas via QR Code, ou exportar para publicação usando:
+
+```
+npx expo export
 ```
 
 ---
 
-## 4. Estrutura básica do projeto
+## 3. Erros comuns
 
-```
-demo/
-├── src/
-│   ├── main/
-│   │   ├── java/com/exemplo/demo/DemoApplication.java
-│   │   └── resources/application.properties
-│   └── test/
-│       └── java/com/exemplo/demo/DemoApplicationTests.java
-├── build.gradle
-└── settings.gradle
-```
-
-**DemoApplication.java** — classe principal que inicia o Spring Boot:
-
-```java
-package com.exemplo.demo;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class DemoApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-    }
-}
-```
-
-**application.properties** — configurações da aplicação:
-
-```properties
-server.port=8080
-spring.application.name=demo
-```
-
-**build.gradle** — dependências e configuração do build:
-
-```gradle
-plugins {
-    id 'org.springframework.boot' version '4.1.0'
-    id 'io.spring.dependency-management' version '1.1.0'
-    id 'java'
-}
-
-group = 'com.exemplo'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '21'
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-```
-
----
-
-## 5. Executando a aplicação
-
-1. Abra `DemoApplication.java` em `src/main/java/com/exemplo/demo/`
-2. Execute de uma das formas:
-   - Clique no ▶️ ao lado do método `main`
-   - Botão direito → **Run 'DemoApplication'**
-   - Atalho `Shift + F10`
-
-Console esperado ao concluir:
-
-```
-Started DemoApplication in 2.345 seconds (process running for 2.789)
-```
-
-O Tomcat embutido inicia automaticamente e a aplicação fica disponível para requisições.
-
----
-
-## 6. Comparação dos dois métodos
-
-| Método | Característica principal |
+| Erro | Solução |
 |---|---|
-| Spring Initializr | Cria o projeto pelo navegador; arquivo `.zip` baixado e importado na IDE |
-| IntelliJ IDEA | Cria e configura o projeto direto na IDE, sem sair do ambiente |
-
-- Use o **Spring Initializr** para uma visão mais clara das opções ou em editores sem integração com Spring.
+| `Deprecated` (ao rodar `expo-cli`) | Basta rodar `expo start` diretamente, sem passar pelo `expo-cli` |
 - Use o **IntelliJ IDEA** para agilizar o processo sem sair da IDE.
 
 **Resumo:** independente do método, o resultado final é um projeto Spring Boot funcional, com estrutura de pastas correta, dependências configuradas e pronto para desenvolvimento.
